@@ -1,4 +1,4 @@
-Monit
+Monit [![Build Status](https://travis-ci.org/jpartain89/ansible-role-configure-monit.svg?branch=master)](https://travis-ci.org/jpartain89/ansible-role-configure-monit)
 ========
 
 Ansible role to configure Monit, not install it. This was forked off from [pgolm's Monit Project](https://github.com/pgolm/ansible-role-monit)
