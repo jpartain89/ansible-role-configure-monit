@@ -1,0 +1,4 @@
+---
+
+- src: https://github.com/jpartain89/ansible_monit_from_source.git
+  name: jpartain89.monit-from-source
