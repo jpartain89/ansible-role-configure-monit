@@ -1,11 +1,13 @@
 ---
 
-- include_vars: "{{ item.vars }}.yml"
-  when:  ansible_os_family == "{{ item.fam }}"
-  with_items:
-    - "{ vars: debian, fam: Debian }"
-    - "{ vars: redhat, fam: RedHat }"
-    - "{ vars: macOS, fam: Darwin }"
+- include_vars: debian.yml
+  when:  ansible_os_family == "Debian"
+
+- include_vars: redhat.yml
+  when: ansible_os_family == "RedHat"
+
+- include_vars: macOS.yml
+  when: ansible_os_family == "Darwin"
 
 - name: Create Includes and Lib Directories
   file:
