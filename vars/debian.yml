@@ -1,7 +1,7 @@
 ---
 
-monit_config_dir: /etc/monit
-monitrc_conf: /etc/monitrc
+monit_config_dir: /etc
+monitrc_conf: "{{ monit_config_dir }}/monitrc"
 monit_includes: "{{ monit_config_dir }}/conf.d"
 
 monit_owner: root
