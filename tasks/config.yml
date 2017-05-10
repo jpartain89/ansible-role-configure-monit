@@ -19,6 +19,7 @@
   with_items:
     - "{{ monit_lib_folder }}"
     - "{{ monit_includes }}"
+    - "{{ monit_log_dir }}"
 
 - name: Config | Setup monitrc
   template:

@@ -3,7 +3,8 @@
 monit_dir: /etc/monit
 monitrc_conf: "{{ monit_dir }}rc"
 monit_includes: "{{ monit_dir }}/conf.d"
-monit_log_destination: /var/log/monit.log
+monit_log_dir: /var/log/monit
+monit_log_destination: "{{ monit_log_dir }}/monit.log"
 
 monit_owner: root
 monit_group: root
