@@ -13,12 +13,11 @@
   file:
     path: "{{ item }}"
     state: directory
-    mode: 0600
+    mode: 0775
     owner: "{{ monit_owner }}"
     group: "{{ monit_group }}"
   with_items:
     - "{{ monit_lib_folder }}"
-    - "{{ monit_config_dir }}"
     - "{{ monit_includes }}"
 
 - name: Config | Setup monitrc
@@ -36,7 +35,7 @@
     dest: "{{ monit_includes }}/webinterface"
     owner: "{{ monit_owner }}"
     group: "{{ monit_group }}"
-    mode: 0644
+    mode: 0660
   notify: restart monit
 
 - name: Config | Setup Mail Alerts
@@ -45,6 +44,6 @@
     dest: "{{ monit_includes }}/mail"
     owner: "{{ monit_owner }}"
     group: "{{ monit_group }}"
-    mode: 0644
+    mode: 0660
   notify: restart monit
   when: monit_mail_enabled

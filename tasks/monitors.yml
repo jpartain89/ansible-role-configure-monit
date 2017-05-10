@@ -1,20 +1,22 @@
 ---
+
 - name: Monitors | Write Monitors
   template:
     src: monitor.j2
     dest: "{{ monit_includes }}/{{ item.name }}"
     owner: "{{ monit_owner }}"
     group: "{{ monit_group }}"
+    mode: 0660
   with_items: "{{ monit_services }}"
   notify: restart monit
 
 - name: Monitors | Create Facts Directory
   file:
     path: "/etc/ansible/facts.d"
-    mode: 0755
+    mode: 0775
     state: directory
 
-- name: Monitors | Registers configured monitors
+- name: Monitors | Register Configured Monitors
   template:
     src: "monit.fact.j2"
     dest: "/etc/ansible/facts.d/monit.fact"
