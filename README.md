@@ -1,15 +1,16 @@
-Monit [![Build Status](https://travis-ci.org/jpartain89/ansible-role-configure-monit.svg?branch=master)](https://travis-ci.org/jpartain89/ansible-role-configure-monit)
-========
+# Monit
+
+| **Travis-CI** |
+| --------- |
+| [![Build Status](https://travis-ci.org/jpartain89/ansible-role-configure-monit.svg?branch=master)](https://travis-ci.org/jpartain89/ansible-role-configure-monit) |
 
 Ansible role to configure Monit, not install it. This was forked off from [pgolm's Monit Project](https://github.com/pgolm/ansible-role-monit)
 
-Requirements
-------------
+## Requirements
 
 You'll need to have monit already installed; either through your system's package manager or through [Installing Monit from Source](https://github.com/jpartain89/ansible_monit_from_source)
 
-Role Variables
---------------
+# Role Variables
 
 * `monit_cycle`: Time between checks in seconds. Defaults to `120`
 * `monit_log_destination`: Where the log will be written. Can be a path to a file or "syslog", which will write to syslog daemon. Defaults to `/var/log/monit.log`
@@ -48,18 +49,15 @@ Role Variables
 * `monit_webinterface_port`: Port for web interface. Defaults to `2812`
 * `monit_webinterface_acl_rules`: List of ACL rules for the web interface, such as `localhost`, `username:password`, `@groupname`. It is only applied when defined and is empty by default. You should probably define at least one for the httpd service to start
 
-Custom facts
-------------
+## Custom Facts
 
 This role writes a `monit_services_configured` in `/etc/ansible/facts.d/monit.fact` in order to keep track of the configured monitors between different plays. This helps us removing unused monitors.
 
-LICENSE
--------
+## LICENSE
 
 MIT
 
-CONTRIBUTORS
-------------
+## CONTRIBUTORS
 
 The below contributors are from the prior project. Keeping the list here for posterity.
 
