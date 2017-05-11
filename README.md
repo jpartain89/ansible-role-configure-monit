@@ -22,7 +22,18 @@ You'll need to have monit already installed; either through your system's packag
 * `monit_mmonit_address`: The web address of your M/Monit instance to send the events to
 * `monit_services`: List of hashes of services to be monitorized by monit
   * `name`: Name of the process or host
-  * `type`: Type of monitorization, "process", "process_by_name", "host", "filesystem" and "system" are supported
+  * `type`: Type of monitorization:
+      * `process`
+      * `process_by_name`
+      * `file`
+      * `fifo`
+      * `host`
+      * `filesystem`
+      * `directory`
+      * `program`
+      * `network`
+      * `network_by_interface`
+      * `system`
   * `target`: Target of monitorization. Should be a pidfile, processname, an address or undefined, depending on the `type` of service
   * `start`: Command that starts the service. Optional
   * `stop`: Command that stop the service. Optional
@@ -30,6 +41,9 @@ You'll need to have monit already installed; either through your system's packag
   * `user`: Linux username of the user starting the program. Optional
   * `group`: Linux group of the user starting the program. Optional
   * `rules`: List of rules to be included in this service. Optional
+
+For those of you who are wondering about using `depends` lines in your config files, you can write the dependency with the title in the above rule line, but then you'll need to create a new rule dictionary entry that will consequently create another file. As long as the `names` match, monit will know.
+
 * `monit_service_delete_unlisted`: Remove existing service monitorization configurations not declared in the `services`. Defaults to `true`
 * `monit_mail_enabled`: Enable mail alerts. Defaults to `false`
 * `monit_mailserver_host`: Mailserver host address. Defaults to `localhost`
