@@ -33,7 +33,7 @@ You'll need to have monit already installed; either through your system's packag
       * `program`
       * `network`
       * `network_by_interface`
-      * `system`
+      * `system` - This item will run a check on the `target` that you specify, not the `name`
   * `target`: Target of monitorization. Should be a pidfile, processname, an address or undefined, depending on the `type` of service
   * `start`: Command that starts the service. Optional
   * `stop`: Command that stop the service. Optional
