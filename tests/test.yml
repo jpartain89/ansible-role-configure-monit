@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  remote_user: root
+  become: true
 
   vars:
     monit_webinterface_acl_rules:
