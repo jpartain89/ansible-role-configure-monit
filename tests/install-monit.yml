@@ -1,7 +1,5 @@
 ---
 - hosts: localhost
-  become: true
-  become_user: root
   
   roles:
     - jpartain89.install-monit-from-source
