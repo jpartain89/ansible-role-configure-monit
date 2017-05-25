@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+# {{ ansible_managed }}
+
+# Bash-Based Facts File for Outputting the Installed Monit Monitors
+
+MONITORS_LOC="{{ monit_includes }}"
+MONITORS_REG="$(ls -1 $MONITORS_LOC)"
+
+while IFS= read -r line; do
+    
