@@ -1,5 +1,17 @@
 ---
 
+- name: Monitors | Write Parent Monitors
+  template:
+    src: monitor.j2
+    dest: "{{ monit_includes }}/{{ item.name }}"
+    owner: "{{ monit_owner }}"
+    group: "{{ monit_group }}"
+    mode: 0660
+  with_items:
+    - "{{ parent_monit_services }}"
+  notify: restart monit
+  when: parent_monit_services is defined
+
 - name: Monitors | Write Monitors
   template:
     src: monitor.j2
@@ -7,7 +19,8 @@
     owner: "{{ monit_owner }}"
     group: "{{ monit_group }}"
     mode: 0660
-  with_items: "{{ monit_services }}"
+  with_items:
+    - "{{ monit_services }}"
   notify: restart monit
 
 - name: Monitors | Create Facts Directory

@@ -21,6 +21,7 @@ You'll need to have monit already installed; either through your system's packag
 * `monit_eventqueue_slots`: Event queue slots. It is only used when `monit_eventqueue_dir` is defined. Defaults to `1000`
 * `monit_mmonit_address`: The web address of your M/Monit instance to send the events to
 * `monit_services`: List of hashes of services to be monitorized by monit
+* `parent_monit_services`: Same list, but as a master list, if your machines share any definitions
   * `name`: Name of the process or host
   * `type`: Type of monitorization:
       * `process`
