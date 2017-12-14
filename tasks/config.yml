@@ -1,15 +1,18 @@
 ---
 
 - name: Include Debian Variable File
-  include_vars: debian.yml
+  include_vars:
+    name: debian.yml
   when:  ansible_os_family == "Debian"
 
 - name: Include Redhat Variable File
-  include_vars: redhat.yml
+  include_vars:
+    name: redhat.yml
   when: ansible_os_family == "RedHat"
 
 - name: Include macOS Variable File
-  include_vars: macOS.yml
+  include_vars:
+    name: macOS.yml
   when: ansible_os_family == "Darwin"
 
 - name: Create Includes and Lib Directories

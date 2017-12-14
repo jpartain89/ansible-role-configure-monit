@@ -1,11 +1,13 @@
 ---
 
 - name: Running Config.yml
-  include_role: config.yml
+  include_role:
+    name: config.yml
   tags: monit_config
   become: true
 
 - name: Running Monitors.yml
-  include_role: monitors.yml
+  include_role:
+    name: monitors.yml
   tags: monit_monitors
   become: true
