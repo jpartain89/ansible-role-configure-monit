@@ -1,7 +1,7 @@
 ---
 
 monit_dir: /usr/local/etc/monit
-monitrc_conf: "{{ monit_dir }}rc"
+monitrc_conf: "{{ monit_dir }}/monitrc"
 monit_includes: "{{ monit_dir }}/conf.d"
 monit_log_dir: /usr/local/var/log/monit
 monit_log_destination: "{{ monit_log_dir }}/monit.log"
