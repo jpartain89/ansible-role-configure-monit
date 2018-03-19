@@ -1,5 +1,5 @@
 ---
 
 - name: restart monit
-  shell: "{{ _monit_executable }} reload"
+  shell: "{{ _monit_executable.stdout }} reload"
   become: true
