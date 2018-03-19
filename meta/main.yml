@@ -2,7 +2,7 @@
 galaxy_info:
   author: Justin Partain
   description: Ansible role for configuring Monit.
-  min_ansible_version: 1.6
+  min_ansible_version: 2.4
   license: MIT
   platforms:
   - name: Debian
@@ -24,4 +24,5 @@ galaxy_info:
   galaxy_tags:
     - monitoring
     - system
-dependencies: []
+dependencies:
+  - Monit Installed on your System (look to jpartain89.install-monit-from-source)
