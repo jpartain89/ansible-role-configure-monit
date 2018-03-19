@@ -5,10 +5,6 @@
   vars:
     monit_webinterface_acl_rules:
       - localhost
-    monit_services:
-      - name: systemload
-        type: system
-        target: $HOST
 
   roles:
     - ansible-role-configure-monit
