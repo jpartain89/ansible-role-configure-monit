@@ -1,5 +1,9 @@
 ---
 
+- name: Register Monit's Executable Location
+  command: command -v monit
+  register: _monit_executable
+
 - include_tasks: config.yml
   tags: monit_config
   become: true
