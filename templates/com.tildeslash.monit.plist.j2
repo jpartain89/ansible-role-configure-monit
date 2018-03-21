@@ -9,7 +9,7 @@
     <key>LaunchOnlyOnce</key>    <false/>
     <key>ProgramArguments</key>
     <array>
-        <string>{{ monit_executable }}</string>
+        <string>{{ monit_executable.stdout }}</string>
         <string>-I</string>
         <string>-c</string>
         <string>{{ monitrc_conf }}</string>

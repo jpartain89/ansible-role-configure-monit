@@ -2,8 +2,11 @@
 
 - name: Register Monit's Executable Location
   shell: 'command -v monit'
-  register: monit_executable
+  register: _monit_executable
   failed_when: false
+
+- set_fact:
+  monit_executable: "{{ _monit_executable.stdout | default('/usr/local/bin/monit') }}"
 
 - debug: var=monit_executable
 
