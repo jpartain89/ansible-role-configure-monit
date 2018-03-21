@@ -5,6 +5,8 @@
   register: monit_executable
   failed_when: false
 
+- debug: var=monit_executable
+
 - include_vars: debian.yml
   when:  ansible_os_family == "Debian"
 
