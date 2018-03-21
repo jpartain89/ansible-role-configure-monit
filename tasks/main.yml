@@ -9,6 +9,8 @@
   _monit_executable: "{{ _monit_exec.stdout | default('/usr/local/bin/monit') }}"
   cacheable: true
 
+- debug: var=_monit_executable
+
 - include_vars: debian.yml
   when:  ansible_os_family == "Debian"
 
