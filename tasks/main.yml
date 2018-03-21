@@ -4,6 +4,15 @@
   shell: 'command -v monit'
   register: _monit_executable
 
+- include_vars: debian.yml
+  when:  ansible_os_family == "Debian"
+
+- include_vars: redhat.yml
+  when: ansible_os_family == "RedHat"
+
+- include_vars: macOS.yml
+  when: ansible_os_family == "Darwin"
+
 - include_tasks: autostart.yml
   tags: monit_autostart
   become: true

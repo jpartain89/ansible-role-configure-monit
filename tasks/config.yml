@@ -1,14 +1,5 @@
 ---
 
-- include_vars: debian.yml
-  when:  ansible_os_family == "Debian"
-
-- include_vars: redhat.yml
-  when: ansible_os_family == "RedHat"
-
-- include_vars: macOS.yml
-  when: ansible_os_family == "Darwin"
-
 - name: Create Includes and Lib Directories
   file:
     path: "{{ item }}"
