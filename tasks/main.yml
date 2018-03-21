@@ -4,6 +4,10 @@
   shell: 'command -v monit'
   register: _monit_executable
 
+- include_tasks: autostart.yml
+  tags: monit_autostart
+  become: true
+
 - include_tasks: config.yml
   tags: monit_config
   become: true
