@@ -10,13 +10,13 @@
 
 - debug: var=monit_executable
 
-- import_vars: debian.yml
+- include_vars: debian.yml
   when:  ansible_os_family == "Debian"
 
-- import_vars: redhat.yml
+- include_vars: redhat.yml
   when: ansible_os_family == "RedHat"
 
-- import_vars: macOS.yml
+- include_vars: macOS.yml
   when: ansible_os_family == "Darwin"
 
 - import_tasks: autostart.yml
