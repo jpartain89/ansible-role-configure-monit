@@ -4,6 +4,9 @@
   shell: 'command -v monit'
   register: _monit_executable
   failed_when: false
+  changed_when: false
+
+- debug: var=_monit_executable
 
 - set_fact:
   monit_executable: "{{ _monit_executable.stdout | default('/usr/local/bin/monit') }}"
