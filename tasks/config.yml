@@ -22,6 +22,29 @@
     mode: 0700
   notify: restart monit
 
+- name: Stat /etc/monitrc
+  stat:
+    path: /etc/monitrc
+  register: _etc_monitrc
+  become: true
+
+- debug: var=_etc_monitrc.stat
+
+- name: Remove /etc/monitrc if Not a Link
+  file:
+    path: /etc/monitrc
+    state: absent
+  become: true
+  when: not _etc_monitrc.stat.islnk
+
+- name: Link /etc/monit/monitrc to /etc/monitrc
+  file:
+    path: /etc/monitrc
+    src: /etc/monit/monitrc
+    state: link
+  become: true
+  when: not _etc_monitrc.stat.islnk
+
 - name: Config | Setup Webinterface
   template:
     src: webinterface.j2
