@@ -36,6 +36,7 @@
     state: absent
   become: true
   when: not _etc_monitrc.stat.islnk
+  failed_when: false
 
 - name: Link /etc/monit/monitrc to /etc/monitrc
   file:
