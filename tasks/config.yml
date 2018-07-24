@@ -36,7 +36,7 @@
     state: absent
   become: true
   when: not _etc_monitrc.stat.islnk
-  failed_when: false
+  ignore_errors: yes
 
 - name: Config | Link /etc/monit/monitrc to /etc/monitrc
   file:
@@ -44,7 +44,8 @@
     src: /etc/monit/monitrc
     state: link
   become: true
-  when: not _etc_monitrc.stat.islnk
+  when: not _etc_monitrc.stat.islnk or not _etc_monitrc.stat.exists
+  ignore_errors: yes
 
 - name: Config | Config | Setup Webinterface
   template:
