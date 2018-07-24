@@ -6,6 +6,7 @@ before_install:
 - sudo apt-get update -qq
 - sudo apt-get install -qqy python-apt python
 install:
+- sudo -H pip install --upgrade urllib3[secure]
 - sudo -H pip install --upgrade ansible
 - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 - ansible-galaxy install -r tests/requirements.yml
