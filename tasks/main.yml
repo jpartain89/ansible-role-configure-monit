@@ -1,17 +1,13 @@
 ---
 
-- name: Register Monit's Executable Location
+- name: Main | Register Monit's Executable Location
   shell: 'command -v monit'
   register: _monit_executable
   failed_when: false
   changed_when: false
 
-- debug: var=_monit_executable
-
 - set_fact:
   monit_executable: "{{ _monit_executable.stdout | default('/usr/local/bin/monit') }}"
-
-- debug: var=monit_executable
 
 - include_vars: debian.yml
   when:  ansible_os_family == "Debian"
