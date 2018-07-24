@@ -28,8 +28,6 @@
   register: _etc_monitrc
   become: true
 
-- debug: var=_etc_monitrc.stat
-
 - name: Config | Remove /etc/monitrc if Not a Link
   file:
     path: /etc/monitrc
