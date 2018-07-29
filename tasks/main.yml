@@ -3,7 +3,7 @@
 - name: Main | Register Monit's Executable Location
   shell: 'command -v monit'
   register: _monit_executable
-  failed_when: false
+  ignore_errors: yes
   changed_when: false
 
 - set_fact:
