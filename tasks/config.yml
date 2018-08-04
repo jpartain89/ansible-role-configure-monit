@@ -13,7 +13,7 @@
     - "{{ monit_log_dir }}"
     - "{{ monit_alert_defaults }}"
 
-- name: Config | Config | Setup monitrc
+- name: Config | Setup monitrc
   template:
     src: monitrc.j2
     dest: "{{ monitrc_conf }}"
@@ -24,13 +24,13 @@
 
 - name: Config | Stat /etc/monitrc
   stat:
-    path: /etc/monitrc
+    path: "{{ monit_dir }}rc"
   register: _etc_monitrc
   become: true
 
 - name: Config | Remove /etc/monitrc if Not a Link
   file:
-    path: /etc/monitrc
+    path: "{{ monit_dir }}rc"
     state: absent
   become: true
   when: not _etc_monitrc.stat.islnk
@@ -38,8 +38,8 @@
 
 - name: Config | Link /etc/monit/monitrc to /etc/monitrc
   file:
-    path: /etc/monitrc
-    src: /etc/monit/monitrc
+    path: "{{ monit_dir }}rc"
+    src: "{{ monit_dir }}/monitrc"
     state: link
   become: true
   when: not _etc_monitrc.stat.islnk or not _etc_monitrc.stat.exists
