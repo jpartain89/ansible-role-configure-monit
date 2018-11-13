@@ -7,4 +7,6 @@
     owner: "{{ monit_owner }}"
     group: "{{ monit_group }}"
     mode: 0660
-  notify: restart monit
+  notify:
+    - restart debian monit
+    - restart macos monit

@@ -1,5 +1,13 @@
 ---
 
-- name: restart monit
-  shell: "{{ monit_executable }} -c {{ monitrc_conf }} reload"
+- name: restart debian monit
+  service:
+    name: monit
+    state: restarted
   become: true
+  when: ansible_distribution == "Debian"
+
+- name: restart macos monit
+  shell: '/usr/local/bin/lunchy restart com.tildeslash.monit'
+  become: true
+  when: ansible_distribution == "Darwin"
