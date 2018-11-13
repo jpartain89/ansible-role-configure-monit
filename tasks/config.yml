@@ -24,7 +24,7 @@
 
 - name: Config | Stat /etc/monitrc
   stat:
-    path: "{{ monit_dir }}rc"
+    path: "{{ monitrc_conf }}"
   register: _etc_monitrc
   become: true
 
