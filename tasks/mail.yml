@@ -7,5 +7,7 @@
     owner: "{{ monit_owner }}"
     group: "{{ monit_group }}"
     mode: 0660
-  notify: restart monit
+  notify:
+    - restart macos monit
+    - restart debian monit
   when: monit_mail_enabled
