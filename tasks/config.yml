@@ -26,7 +26,7 @@
 
 - name: Config | Stat /etc/monitrc
   stat:
-    path: "{{ monitrc_conf }}"
+    path: "{{ monit_dir }}rc"
   register: _etc_monitrc
   become: true
 
@@ -47,7 +47,7 @@
   when: not _etc_monitrc.stat.islnk or not _etc_monitrc.stat.exists
   ignore_errors: yes
 
-- name: Config | Config | Setup Webinterface
+- name: Config | Setup Webinterface
   template:
     src: webinterface.j2
     dest: "{{ monit_includes }}/webinterface"
@@ -58,7 +58,7 @@
     - restart macos monit
     - restart debian monit
 
-- name: Config | Config | Setup Mail Alerts
+- name: Config | Setup Mail Alerts
   template:
     src: mail.j2
     dest: "{{ monit_includes }}/mail"
@@ -70,7 +70,7 @@
     - restart debian monit
   when: monit_mail_enabled
 
-- name: Config | Config | Copy Over Alert Defaults
+- name: Config | Copy Over Alert Defaults
   copy:
     src: files/{{ item }}
     dest: "{{ monit_alert_defaults }}/{{ item }}"
