@@ -8,7 +8,13 @@
 
 - name: Setting Monit's Executable Location
   set_fact:
-    monit_executable: "{{ _monit_executable.stdout | default('/usr/local/bin/monit') }}"
+    monit_executable: "{{ _monit_executable.stdout }}"
+  when: _monit_executable is succeeded
+
+- name: Setting Monit's Executable Location | Default
+  set_fact:
+    monit_executable: "/usr/local/bin/monit"
+  when: _monit_executable is failed
 
 - include_vars: debian.yml
   when:  ansible_os_family == "Debian"
