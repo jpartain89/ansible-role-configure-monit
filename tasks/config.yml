@@ -68,7 +68,7 @@
   notify:
     - restart macos monit
     - restart debian monit
-  when: monit_mail_enabled
+  when: monit_mail_enabled | bool
 
 - name: Config | Copy Over Alert Defaults
   copy:
