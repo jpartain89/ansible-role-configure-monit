@@ -30,6 +30,19 @@
   register: _etc_monitrc
   become: true
 
+- name: Config | Create Blank /etc/monitrc File if Nothing Present
+  file:
+    path: "{{ monit_dir }}rc"
+    state: touch
+  become: true
+  when: not _etc_monitrc.stat.exists
+
+- name: Config | Stat /etc/monitrc
+  stat:
+    path: "{{ monit_dir }}rc"
+  register: _etc_monitrc
+  become: true
+
 - name: Config | Remove /etc/monitrc if Not a Link
   file:
     path: "{{ monit_dir }}rc"
