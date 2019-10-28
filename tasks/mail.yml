@@ -3,7 +3,7 @@
 - name: Mail | Setup Mail Alerts
   template:
     src: mail.j2
-    dest: {{ monit_includes }}/mail
+    dest: "{{ monit_includes }}/mail"
     owner: "{{ monit_owner }}"
     group: "{{ monit_group }}"
     mode: 0660

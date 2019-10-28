@@ -1,6 +1,12 @@
-language: c
-sudo: required
-dist: xenial
+language: python
+
+jobs:
+  include:
+    - os: osx
+      language: objective-c
+      osx_image: xcode11.2
+    - os: linux
+      dist: 
 
 before_install:
 - sudo apt-get update -qq

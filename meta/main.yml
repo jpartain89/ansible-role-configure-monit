@@ -24,4 +24,5 @@ galaxy_info:
   galaxy_tags:
     - monitoring
     - system
-dependencies: []
+  dependencies:
+    - role: jpartain89.install-monit-from-source
