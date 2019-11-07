@@ -9,9 +9,9 @@
     mode: 0660
   with_items:
     - "{{ parent_monit_services }}"
-  notify:
-    - restart macos monit
-    - restart debian monit
+  #notify:
+  #  - restart macos monit
+  #  - restart debian monit
   when: parent_monit_services is defined
 
 - name: Monitors | Write Monitors
@@ -23,9 +23,9 @@
     mode: 0660
   with_items:
     - "{{ monit_services }}"
-  notify:
-    - restart macos monit
-    - restart debian monit
+  #notify:
+  #  - restart macos monit
+  #  - restart debian monit
 
 - name: Monitors | Create Facts Directory
   file:
@@ -56,6 +56,6 @@
     state: absent
   with_items: "{{ monit_services_present.stdout_lines }}"
   when: monit_service_delete_unlisted and item|basename not in ansible_local.monit.monit_configured_services
-  notify:
-    - restart macos monit
-    - restart debian monit
+  #notify:
+  #  - restart macos monit
+  #  - restart debian monit
