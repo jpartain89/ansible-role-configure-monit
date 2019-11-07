@@ -4,6 +4,7 @@ monit_cycle: 120
 monit_state_file: "{{ monit_lib_folder }}/state"
 monit_id_file: "{{ monit_lib_folder }}/id"
 monit_executable: /usr/local/bin/monit
+default_monit_executable: /usr/bin/monit
 
 monit_eventqueue:
   enabled: false
