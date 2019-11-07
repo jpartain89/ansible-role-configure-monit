@@ -20,9 +20,9 @@
     owner: "{{ monit_owner }}"
     group: "{{ monit_group }}"
     mode: 0700
-  #notify:
-  #  - "restart macos monit"
-  #  - "restart debian monit"
+  notify:
+    - "restart macos monit"
+    - "restart debian monit"
 
 - name: Config | Stat /etc/monitrc
   stat:
@@ -67,9 +67,9 @@
     owner: "{{ monit_owner }}"
     group: "{{ monit_group }}"
     mode: 0660
-  #notify:
-  #  - "restart macos monit"
-  #  - "restart debian monit"
+  notify:
+    - "restart macos monit"
+    - "restart debian monit"
 
 - name: Config | Setup Mail Alerts
   template:
@@ -78,9 +78,9 @@
     owner: "{{ monit_owner }}"
     group: "{{ monit_group }}"
     mode: 0660
-  #notify:
-  #  - "restart macos monit"
-  #  - "restart debian monit"
+  notify:
+    - "restart macos monit"
+    - "restart debian monit"
   when: monit_mail_enabled | bool
 
 - name: Config | Copy Over Alert Defaults
@@ -93,6 +93,6 @@
   with_items:
     - '3_5_cycles'
     - '5_7_7_10_cycles'
-  #notify:
-  #  - "restart macos monit"
-  #  - "restart debian monit"
+  notify:
+    - "restart macos monit"
+    - "restart debian monit"
