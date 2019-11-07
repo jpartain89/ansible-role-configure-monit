@@ -20,7 +20,7 @@ provisioner:
   lint:
     name: ansible-lint
     options:
-      x: ["ANSIBLE502", "ANSIBLE503"]
+      x: ["ANSIBLE502,ANSIBLE503"]
 verifier:
   name: testinfra
   lint:
