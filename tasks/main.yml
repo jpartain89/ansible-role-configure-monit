@@ -13,7 +13,7 @@
 
 - name: Setting Monit's Executable Location | Default
   set_fact:
-    monit_executable: "/usr/local/bin/monit"
+    monit_executable: "{{ default_monit_executable }}"
   when: _monit_executable is failed
 
 - include_vars: debian.yml
