@@ -8,6 +8,7 @@ driver:
 lint:
   name: yamllint
 platforms:
+  - name: instance
     image: "geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu1804}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
