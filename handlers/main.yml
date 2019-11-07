@@ -6,3 +6,8 @@
     state: restarted
   become: true
   when: ansible_distribution == "Debian"
+
+- name: restart macos monit
+  shell: '/usr/local/bin/lunchy restart com.tildeslash.monit'
+  become: true
+  when: ansible_distribution == "Darwin"
