@@ -21,8 +21,8 @@
     group: "{{ monit_group }}"
     mode: 0700
   notify:
-    - restart macos monit
-    - restart debian monit
+    - "restart macos monit"
+    - "restart debian monit"
 
 - name: Config | Stat /etc/monitrc
   stat:
@@ -68,8 +68,8 @@
     group: "{{ monit_group }}"
     mode: 0660
   notify:
-    - restart macos monit
-    - restart debian monit
+    - "restart macos monit"
+    - "restart debian monit"
 
 - name: Config | Setup Mail Alerts
   template:
@@ -79,8 +79,8 @@
     group: "{{ monit_group }}"
     mode: 0660
   notify:
-    - restart macos monit
-    - restart debian monit
+    - "restart macos monit"
+    - "restart debian monit"
   when: monit_mail_enabled | bool
 
 - name: Config | Copy Over Alert Defaults
@@ -94,5 +94,5 @@
     - '3_5_cycles'
     - '5_7_7_10_cycles'
   notify:
-    - restart macos monit
-    - restart debian monit
+    - "restart macos monit"
+    - "restart debian monit"

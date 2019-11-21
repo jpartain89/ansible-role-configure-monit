@@ -1,7 +1,7 @@
 ---
 
 - name: Main | Register Monit's Executable Location
-  shell: 'command -v monit'
+  shell: 'command -v monit' # noqa 305
   register: _monit_executable
   ignore_errors: yes
   changed_when: false

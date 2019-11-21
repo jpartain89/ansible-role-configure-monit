@@ -56,8 +56,8 @@ parent_monit_services:
     start: /etc/init.d/ssh start
     stop: /etc/init.d/ssh stop
     rules:
-      - if failed port {{ hostvars[inventory_hostname]['ssh_port'] }} protocol ssh for 5 times within 7 cycles then alert
-      - if failed port {{ hostvars[inventory_hostname]['ssh_port'] }} protocol ssh for 7 times within 10 cycles then restart
+      - if failed port {{ hostvars[inventory_hostname]['ssh_port'] | default('22') }} protocol ssh for 5 times within 7 cycles then alert
+      - if failed port {{ hostvars[inventory_hostname]['ssh_port'] | default('22') }} protocol ssh for 7 times within 10 cycles then restart
 
 monit_services: []
 
