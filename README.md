@@ -8,7 +8,7 @@ Ansible role to configure Monit, not install it. This was forked off from [pgolm
 
 ## Requirements
 
-You'll need to have monit already installed; either through your system's package manager or through [Installing Monit from Source](https://github.com/jpartain89/ansible_monit_from_source)
+You'll need to have monit already installed; either through your system's package manager or through [Installing Monit from Source](https://github.com/jpartain89/ansible-role-install-monit-from-source)
 
 # Role Variables
 
