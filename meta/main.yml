@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: configure_monit
   author: Justin Partain
   description: Ansible role for configuring Monit.
   min_ansible_version: 2.4
