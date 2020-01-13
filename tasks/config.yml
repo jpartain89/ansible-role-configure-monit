@@ -12,7 +12,6 @@
     - "{{ monit_includes }}"
     - "{{ monit_log_dir }}"
     - "{{ monit_alert_defaults }}"
-    - "/usr/local/share/man"
 
 - name: Config | Setup monitrc
   template:
