@@ -48,3 +48,16 @@ check network {{ monit_monitor.name }} with interface {{ monit_monitor.target }}
   {{ rule }}
 {% endfor %}
 {% endif %}
+
+{% if monit_monitor.depends is defined %}
+{% for depends in monit_monitor.depends %}
+  depends on {{ depends.dname }}
+{% endfor %}
+
+{% for depends in monit_monitor.depends %}
+check file {{ depends.dname }} with path {{ depends.dtarget }}
+  {% for rules in depends.drules %}
+  {{ rules }}
+  {% endfor %}
+{% endfor %}
+{% endif %}
