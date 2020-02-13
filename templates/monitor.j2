@@ -1,6 +1,7 @@
 {% set monit_monitor = item -%}
 # {{ ansible_managed }}
 
+{# This section is the primary "check" section #}
 {% if monit_monitor.type == 'process' %}
 check process {{ monit_monitor.name }} with pidfile "{{ monit_monitor.target }}"
 {% elif monit_monitor.type == 'process_by_name' %}
@@ -25,39 +26,100 @@ check network {{ monit_monitor.name }} with address {{ monit_monitor.target }}
 check network {{ monit_monitor.name }} with interface {{ monit_monitor.target }}
 {% endif -%}
 
+{# This is the start of "How should I do something" section #}
+{# This first one is the start block #}
 {% if monit_monitor.start is defined %}
   start program = "{{ monit_monitor.start }}"
   {%- if monit_monitor.user is defined %} as uid {{monit_monitor.user}}{% endif %}
   {%- if monit_monitor.group is defined %} and gid {{monit_monitor.group}}{% endif %}
-{% endif %}
+{%- else -%}{% endif %}
 
+{# This next section is the stop block #}
 {% if monit_monitor.stop is defined %}
   stop program = "{{ monit_monitor.stop }}"
   {%- if monit_monitor.user is defined %} as uid {{monit_monitor.user}}{% endif %}
   {%- if monit_monitor.group is defined %} and gid {{monit_monitor.group}}{% endif %}
-{% endif %}
+{%- else -%}{% endif %}
 
+{# And finally, the restart block #}
 {% if monit_monitor.restart is defined %}
   restart program = "{{ monit_monitor.restart }}"
   {%- if monit_monitor.user is defined %} as uid {{monit_monitor.user}}{% endif %}
   {%- if monit_monitor.group is defined %} and gid {{monit_monitor.group}}{% endif %}
-{% endif %}
+{%- else -%}{% endif %}
 
+{# Here we start with the actual rules #}
 {% if monit_monitor.rules is defined %}
 {% for rule in monit_monitor.rules %}
   {{ rule }}
 {% endfor %}
-{% endif %}
+{%- else -%}{% endif %}
 
+{# This is my new "depends" block section, where we can finally nest 'depends' rules into the same file as the primary rule set.#}
+{# This first block here is to setup the intial 'depends; lines' #}
 {% if monit_monitor.depends is defined %}
 {% for depends in monit_monitor.depends %}
   depends on {{ depends.dname }}
 {% endfor %}
 
-{% for depends in monit_monitor.depends %}
-check file {{ depends.dname }} with path {{ depends.dtarget }}
+{# Here, we have an outter "for" loop that circles around every "depends" required to be entered here #}
+{# Inside the for loop, we have a series of if/elif checks that match the above checks, but here we will include the for loop for the corresponding rules, due to the outer for loop being used here #}
+{% for depends in monit_monitor.depends -%}
+{% if depends.dtype == "file" %}
+check file {{ depends.dname }} with path "{{ depends.dtarget }}"
   {% for rules in depends.drules %}
   {{ rules }}
   {% endfor %}
-{% endfor %}
+{% elif depends.dtype == "process" %}
+check process {{ depends.dname }} with pidfile "{{ depends.dtarget }}"
+  {% for rules in depends.drules %}
+  {{ rules }}
+  {% endfor %}
+{% elif depends.dtype == "process_by_name" %}
+check process {{ depends.dname }} with matching "{{ depends.dtarget }}"
+  {% for rules in depends.drules %}
+  {{ rules }}
+  {% endfor %}
+{% elif depends.dtype == 'fifo' %}
+check fifo {{ depends.dname }} with path "{{ depends.dtarget }}"
+  {% for rules in depends.drules %}
+  {{ rules }}
+  {% endfor %}
+{% elif depends.dtype == 'filesystem' %}
+check filesystem {{ depends.dname }} with path "{{ depends.dtarget }}"
+  {% for rules in depends.drules %}
+  {{ rules }}
+  {% endfor %}
+{% elif depends.dtype == 'directory' %}
+check directory {{ depends.dname }} with path "{{ depends.dtarget }}"
+  {% for rules in depends.drules %}
+  {{ rules }}
+  {% endfor %}
+{% elif depends.dtype == 'host' %}
+check host {{ depends.dname }} with address "{{ depends.dtarget }}"
+  {% for rules in depends.drules %}
+  {{ rules }}
+  {% endfor %}
+{% elif depends.dtype == 'system' %}
+check system "{{ depends.dtarget }}"
+  {% for rules in depends.drules %}
+  {{ rules }}
+  {% endfor %}
+{% elif depends.dtype == 'program' %}
+check program {{ depends.dname }} with path "{{ depends.dtarget }}"
+  {% for rules in depends.drules %}
+  {{ rules }}
+  {% endfor %}
+{% elif depends.dtype == 'network' %}
+check network {{ depends.dname }} with address "{{ depends.dtarget }}"
+  {% for rules in depends.drules %}
+  {{ rules }}
+  {% endfor %}
+{% elif depends.dtype == 'network_by_interface' %}
+check network {{ depends.dname }} with interface "{{ depends.dtarget }}"
+  {% for rules in depends.drules %}
+  {{ rules }}
+  {% endfor %}
+{% endif -%}
+{% endfor -%}
 {% endif %}

@@ -1,14 +1,23 @@
 {
   "monit_configured_services": [
-{% for service in monit_services %}
+  {% if monit_services is defined %}
+  {% for service in monit_services %}
     "{{ service.name }}",
-{% endfor %}
-{% for service in parent_monit_services %}
+  {% endfor %}
+  {% endif %}
+  {% if parent_monit_services is defined %}
+  {% for service in parent_monit_services %}
     "{{ service.name }}",
-{% endfor %}
-{% if monit_mail_enabled %}
+  {% endfor %}
+  {% endif %}
+  {% if monit_2nd_services is defined %}
+  {% for service in monit_2nd_services %}
+    "{{ service.name }}",
+  {% endfor %}
+  {% endif %}
+  {% if monit_mail_enabled %}
     "mail",
-{% endif %}
+  {% endif %}
     "webinterface"
   ]
 }
