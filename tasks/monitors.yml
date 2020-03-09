@@ -26,6 +26,21 @@
   notify:
     - restart macos monit
     - restart debian monit
+  when: monit_services is defined
+
+- name: Monitors | Write Secondary Group Monitors
+  template:
+    src: monitor.j2
+    dest: "{{ monit_includes }}/{{ item.name }}"
+    owner: "{{ monit_owner }}"
+    group: "{{ monit_group }}"
+    mode: 0660
+  with_items:
+    - "{{ monit_2nd_services }}"
+  notify:
+    - restart macos monit
+    - restart debian monit
+  when: monit_2nd_services is defined
 
 - name: Monitors | Create Facts Directory
   file:
