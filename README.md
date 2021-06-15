@@ -1,8 +1,6 @@
 # jpartain89.Configure-Monit
 
-| **Travis-CI** |
-| ------- |
-| [![Build Status](https://travis-ci.com/jpartain89/ansible-role-configure-monit.svg?branch=master)](https://travis-ci.com/jpartain89/ansible-role-configure-monit) |
+I am no longer working on this repo. Apologies
 
 Ansible role to configure Monit, not install it. This was forked off from [pgolm's Monit Project](https://github.com/pgolm/ansible-role-monit)
 
@@ -71,20 +69,3 @@ This role writes a `monit_services_configured` in `/etc/ansible/facts.d/monit.fa
 ## LICENSE
 
 MIT
-
-## CONTRIBUTORS
-
-The below contributors are from the prior project. Keeping the list here for posterity.
-
-* [Amnay](https://github.com/amnay-mo)
-* [Anthony Dmitriyev](https://github.com/antstorm)
-* [byteshiva](http://byteshiva.github.io/)
-* [Eduardo de Vera Toquero](https://github.com/etux)
-* [Manuel Tiago Pereira](http://mtpereira.github.io/)
-* [Markus Klepp](https://github.com/kh0r)
-* [Panagiotis Moustafellos](https://github.com/pmoust)
-* [Peter Golm](https://github.com/pgolm)
-* [Roozbeh Farahbod](https://github.com/roozbehf)
-* [Svend Vanderveken](https://github.com/svendx4f)
-* [Tom Naessens](https://github.com/Silox)
-* [vkill](https://github.com/vkill)
